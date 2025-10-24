@@ -81,47 +81,73 @@ export default {
 </script>
 
 <template>
-   <h1 class="text-center text-3xl font-bold text-white mb-6">Crear posteo</h1>
-  <div class="max-w-md mx-auto mt-10">
+  <div class="max-w-lg mx-auto mt-4  mb-16 px-6">
+    <!-- Título principal -->
+    <h1 class="text-center text-4xl font-extrabold text-white mb-10 tracking-wide">
+      Crear Posteo
+    </h1>
+
     <!-- Mensaje de éxito -->
-    <div v-if="successMessage" class="p-4 mb-4 text-green-700 bg-green-100 border border-green-500 rounded">
+    <div
+      v-if="successMessage"
+      class="p-4 mb-4 bg-green-600 text-white text-center rounded-xl shadow-md font-semibold"
+    >
       {{ successMessage }}
     </div>
 
     <!-- Mensaje de error -->
-    <div v-if="errorMessage" class="p-4 mb-4 text-red-700 bg-red-100 border border-red-500 rounded">
+    <div
+      v-if="errorMessage"
+      class="p-4 mb-4 bg-red-600 text-white text-center rounded-xl shadow-md font-semibold"
+    >
       {{ errorMessage }}
     </div>
 
-    <form @submit.prevent="createPost" class="space-y-4">
+    <!-- Formulario -->
+    <form
+      @submit.prevent="createPost"
+      class="bg-gray-800 border border-gray-700 rounded-2xl shadow-lg p-6 space-y-6"
+    >
+      <!-- Campo título -->
       <div>
+        <label class="block text-gray-300 font-medium mb-2">Título</label>
         <input
           v-model="title"
-          placeholder="Título"
-          class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-          style="background-color: #616160;"
+          placeholder="Escribí el título del posteo..."
+          class="w-full p-3 bg-gray-900 text-white border border-blue-400 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition"
         />
       </div>
+
+      <!-- Campo descripción -->
       <div>
+        <label class="block text-gray-300 font-medium mb-2">Descripción</label>
         <textarea
           v-model="description"
-          placeholder="Descripción"
+          placeholder="Agregá una descripción..."
           rows="4"
-          class="w-full p-2 border border-gray-300 rounded-md"
-          style="background-color: #616160;"
+          class="w-full p-3 bg-gray-900 text-white border border-blue-400 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition resize-none"
         ></textarea>
       </div>
+
+      <!-- Subir imagen -->
       <div>
+        <label class="block text-gray-300 font-medium mb-2">Imagen del post</label>
         <input
           type="file"
           @change="onFileChange"
-          class="w-full p-2 border border-gray-300 rounded-md"
+          class="w-full text-gray-200 bg-gray-900 border border-blue-400 rounded-lg cursor-pointer p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600 transition"
         />
       </div>
-      <div>
-        <BaseButton :disabled="isLoading" type="submit">
-  {{ isLoading ? "Creando posteo..." : "Crear Posteo" }}
-</BaseButton>
+
+      <!-- Botón -->
+      <div class="text-center mt-6">
+        <BaseButton
+          :disabled="isLoading"
+          type="submit"
+          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition duration-200 disabled:opacity-50"
+        >
+          {{ isLoading ? "Creando posteo..." : "Crear Posteo" }}
+        </BaseButton>
       </div>
     </form>
   </div>

@@ -1,57 +1,97 @@
-<template>
-  <div class="max-w-2xl mx-auto mt-10">
-    <h1 class="text-center text-3xl font-bold text-white mb-6">Publicaciones</h1>
+<template >
+  <div class="max-w-3xl mx-auto mt-4    mb-16 px-6">
+    <h1 class="text-center text-4xl font-extrabold text-white mb-10 tracking-wide">
+      Publicaciones
+    </h1>
 
-    <div v-if="loading" class="text-center"><Loader /></div>
+    <!-- Loader -->
+    <div v-if="loading" class="text-center">
+      <Loader />
+    </div>
 
-    <div v-else class="space-y-4">
-      <div v-for="post in posts" :key="post.id" class="border p-4 rounded relative">
-        <!-- Mensaje de feedback para esta publicación -->
+    <!-- Contenido -->
+    <div v-else class="space-y-6">
+      <div
+        v-for="post in posts"
+        :key="post.id"
+        class="bg-gray-800 border border-gray-700 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+      >
+        <!-- Feedback de acción -->
         <div
           v-if="post.feedback"
-          class=" w-full bg-green-600 text-white text-center py-2 font-semibold"
+          class="w-full bg-green-600 text-white text-center py-2 font-semibold uppercase tracking-wide"
         >
           {{ post.feedback }}
         </div>
 
-        <img :src="post.imageUrl" alt="Imagen de la publicación" class="w-full h-auto mb-2" />
-        <p><strong>Publicado por: {{ post.userEmail }}</strong></p>
-        <p>{{ post.description }}</p>
+        <!-- Imagen de la publicación -->
+        <img
+          :src="post.imageUrl"
+          alt="Imagen de la publicación"
+          class="w-full h-64 object-cover"
+        />
 
-        <!-- Mostrar los comentarios -->
-        <div v-if="post.comments && post.comments.length > 0" class="mt-4">
-          <h3 class="text-white text-lg">Comentarios:</h3>
-          <div v-for="(comment, index) in post.comments" :key="index" class="mb-2 p-2 bg-gray-700 rounded-md">
-            <p><strong>{{ comment.userEmail }}:</strong></p>
-            <p>{{ comment.text }}</p>
+        <!-- Contenido de texto -->
+        <div class="p-5 space-y-3">
+          <p class="text-gray-300 text-sm">
+            <strong class="text-blue-400">Publicado por:</strong> {{ post.userEmail }}
+          </p>
+          <p class="text-gray-100 leading-relaxed">{{ post.description }}</p>
+
+          <!-- Comentarios -->
+          <div
+            v-if="post.comments && post.comments.length > 0"
+            class="mt-4 bg-gray-900 p-4 rounded-lg border border-gray-700"
+          >
+            <h3 class="text-blue-400 text-lg font-semibold mb-3">Comentarios</h3>
+            <div
+              v-for="(comment, index) in post.comments"
+              :key="index"
+              class="mb-2 bg-gray-800 p-3 rounded-md"
+            >
+              <p class="text-sm text-gray-300 mb-1">
+                <strong class="text-blue-400">{{ comment.userEmail }}:</strong>
+              </p>
+              <p class="text-gray-200">{{ comment.text }}</p>
+            </div>
           </div>
-        </div>
 
-        <!-- Enlace a la página de detalles de la publicación con comentarios -->
-        <p>
-          <router-link :to="`/post/${post.id}`" class="text-blue-500 hover:underline">Ver más comentarios</router-link>
-        </p>
+          <!-- Enlace a detalles -->
+          <div class="mt-4 text-center">
+            <router-link
+              :to="`/post/${post.id}`"
+              class="text-blue-500 hover:text-blue-400 font-semibold hover:underline transition"
+            >
+              Ver más comentarios
+            </router-link>
+          </div>
 
-        <!-- Botones solo visibles si el usuario es admin -->
-        <div v-if="isAdmin" class="flex space-x-4 mt-4">
-          <button
-            @click="editPost(post.id)"
-            class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-200"
+          <!-- Botones de admin -->
+          <div
+            v-if="isAdmin"
+            class="flex flex-wrap justify-center gap-4 mt-6 border-t border-gray-700 pt-4"
           >
-            Editar
-          </button>
-          <button
-            @click="deletePost(post.id)"
-            class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md transition duration-200"
-            :disabled="post.isDeleting"
-          >
-            {{ post.isDeleting ? "Eliminando..." : "Eliminar" }}
-          </button>
+            <button
+              @click="editPost(post.id)"
+              class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-5 rounded-xl shadow-md transition duration-200"
+            >
+              Editar
+            </button>
+
+            <button
+              @click="deletePost(post.id)"
+              :disabled="post.isDeleting"
+              class="bg-red-500 hover:bg-red-600 disabled:opacity-50 text-white font-semibold py-2 px-5 rounded-xl shadow-md transition duration-200"
+            >
+              {{ post.isDeleting ? "Eliminando..." : "Eliminar" }}
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { collection, getDocs, doc, deleteDoc, getDoc } from "firebase/firestore";

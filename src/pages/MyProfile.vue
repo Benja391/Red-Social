@@ -77,29 +77,73 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-black">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-      <BaseHeading1 class="text-center mb-6">Mi Perfil</BaseHeading1>
-      
+  <div class="max-w-lg mx-auto mt-4  mb-16 px-6">
+    <!-- Título principal -->
+    <h1 class="text-center text-4xl font-extrabold text-white mb-10 tracking-wide">
+      Mi Perfil
+    </h1>
+
+    <!-- Contenedor principal -->
+    <div class="bg-gray-800 border border-gray-700 p-8 rounded-2xl shadow-lg">
       <!-- Información del usuario -->
-      <div class="mb-6">
-        <p><strong>Nombre:</strong> {{ userName }}</p>
-        <p><strong>Correo:</strong> {{ userEmail }}</p>
+      <div class="bg-gray-900 p-5 rounded-xl border border-gray-700 mb-8">
+        <p class="text-gray-300 mb-2">
+          <strong class="text-blue-400">Nombre:</strong> {{ userName }}
+        </p>
+        <p class="text-gray-300">
+          <strong class="text-blue-400">Correo:</strong> {{ userEmail }}
+        </p>
       </div>
-      
+
       <!-- Foto de Perfil -->
-      <h2 class="text-xl font-semibold mb-2">Foto de perfil:</h2>
-      <div class="mb-6">
-        <img :src="profileImageUrl" alt="Imagen de perfil" class="w-32 h-32 rounded-full mb-4" v-if="profileImageUrl" />
-        <input type="file" @change="handleProfileImageChange" class="mb-4" />
-        <BaseButton @click="uploadProfileImage" :disabled="isUploadingProfileImage">
+      <div class="text-center">
+        <h2 class="text-2xl font-semibold text-white mb-4">Foto de Perfil</h2>
+
+        <!-- Imagen actual -->
+        <div class="flex flex-col items-center mb-6">
+          <img
+            v-if="profileImageUrl"
+            :src="profileImageUrl"
+            alt="Imagen de perfil"
+            class="w-36 h-36 rounded-full object-cover border-4 border-blue-500 shadow-md mb-4 transition-all hover:scale-105"
+          />
+          <div
+            v-else
+            class="w-36 h-36 rounded-full bg-gray-700 border border-gray-600 flex items-center justify-center text-gray-400 mb-4"
+          >
+            Sin imagen
+          </div>
+
+          <!-- Input de imagen -->
+          <input
+            type="file"
+            @change="handleProfileImageChange"
+            class="text-gray-300 bg-gray-900 border border-blue-400 rounded-lg p-2 w-full cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-blue-500 file:text-white hover:file:bg-blue-600 transition"
+          />
+        </div>
+
+        <!-- Botón de subir -->
+        <BaseButton
+          @click="uploadProfileImage"
+          :disabled="isUploadingProfileImage"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200 disabled:opacity-50"
+        >
           <span v-if="isUploadingProfileImage">Subiendo...</span>
           <span v-else>Subir Imagen de Perfil</span>
         </BaseButton>
       </div>
-      <p v-if="profileImageMessage" :class="{'text-green-500': profileImageMessage.includes('éxito'), 'text-red-500': !profileImageMessage.includes('éxito')}" class="text-center mb-6">
+
+      <!-- Mensaje de feedback -->
+      <p
+        v-if="profileImageMessage"
+        class="text-center mt-6 font-semibold"
+        :class="{
+          'text-green-500': profileImageMessage.includes('éxito'),
+          'text-red-500': !profileImageMessage.includes('éxito')
+        }"
+      >
         {{ profileImageMessage }}
       </p>
     </div>
-  </section>
+  </div>
 </template>

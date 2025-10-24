@@ -78,36 +78,65 @@ export default {
 </script>
 
 <template>
-  <section class="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-black">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-      <BaseHeading1>Ingresa con tu cuenta</BaseHeading1>
+  <section class="flex flex-col items-center justify-center min-h-screen bg-blue-100 text-gray-900 px-6">
+    <div class="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
+      <BaseHeading1 class="text-3xl font-extrabold text-center text-gray-900 mb-8">
+        Ingresá con tu cuenta
+      </BaseHeading1>
 
       <!-- Mensaje de Feedback -->
-      <div v-if="feedbackMessage" :class="['p-4 rounded mb-4', feedbackClass]">
+      <div v-if="feedbackMessage" :class="['p-4 rounded mb-6 text-sm font-medium', feedbackClass]">
         {{ feedbackMessage }}
       </div>
 
-      <form @submit.prevent="handleSubmit">
-        <div class="mb-4">
-          <label for="email" class="block mb-1">Email</label>
+      <form @submit.prevent="handleSubmit" class="space-y-6">
+        <!-- Email -->
+        <div>
+          <label for="email" class="block mb-2 text-sm font-semibold text-gray-700">Email</label>
           <MainInput 
             type="email"
             id="email"
             v-model="user.email"
+            class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
           />
         </div>
-        <div class="mb-4">
-          <label for="password" class="block mb-1">Contraseña</label>
+
+        <!-- Password -->
+        <div>
+          <label for="password" class="block mb-2 text-sm font-semibold text-gray-700">Contraseña</label>
           <MainInput 
             type="password"
             id="password"
             v-model="user.password"
+            class="w-full border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
           />
         </div>
-        <BaseButton type="submit" :disabled="loading">
+
+        <!-- Botón -->
+        <BaseButton 
+          type="submit"
+          :disabled="loading"
+          class="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg py-3 shadow-sm hover:shadow-md transition-all duration-300"
+        >
           {{ loading ? 'Cargando...' : 'Ingresar' }}
         </BaseButton>
       </form>
+
+      <!-- Divider -->
+      <div class="flex items-center justify-center my-8">
+        <span class="h-px bg-gray-200 w-20"></span>
+        <span class="text-sm text-gray-400 mx-3">o</span>
+        <span class="h-px bg-gray-200 w-20"></span>
+      </div>
+
+      <!-- Enlace de registro -->
+      <p class="text-center text-sm text-gray-600">
+        ¿No tenés cuenta?
+        <a href="/registro" class="text-blue-600 font-semibold hover:underline">
+          Registrate gratis
+        </a>
+      </p>
     </div>
   </section>
 </template>
+
