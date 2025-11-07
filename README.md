@@ -6,7 +6,10 @@ Aplicación web que simula una red social básica, permitiendo la creación y vi
 
 ## 📌 Descripción
 
-Este proyecto fue desarrollado como práctica de lógica interna y manejo de datos en tiempo real. Incluye funcionalidades como creación de posts, visualización dinámica y persistencia de datos en la nube. Está construido con enfoque modular y herramientas modernas de desarrollo frontend.
+Este proyecto fue desarrollado como práctica de lógica interna y manejo de datos en tiempo real. Incluye funcionalidades como creación de posts, visualización dinámica y persistencia de datos en la nube. Está construido con enfoque modular y herramientas modernas de desarrollo frontend. cuenta con un usuario administrador
+Usuario de administrador:
+Email: benadmin@gmail.com.
+Contraseña: cubitachampagne123.
 
 ---
 
