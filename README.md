@@ -1,21 +1,53 @@
-# 🧑‍🤝‍🧑 Red Social
+# 🧑‍🤝‍🧑 DV Social: Red Social
 
-Aplicación web que simula una red social básica, permitiendo la creación y visualización de publicaciones ademas de conversaciones en vivo. Utiliza Firebase como base de datos para almacenar contenido en tiempo real.
+Red social web con publicaciones, perfiles y un chat público en tiempo real, construida con **Vue 3** y **Firebase**.
 
----
+**🔗 Demo en vivo:** https://red-social-chat.netlify.app
 
-## 📌 Descripción
-
-Este proyecto fue desarrollado como práctica de lógica interna y manejo de datos en tiempo real. Incluye funcionalidades como creación de posts, visualización dinámica y persistencia de datos en la nube. Está construido con enfoque modular y herramientas modernas de desarrollo frontend. cuenta con un usuario administrador
-Usuario de administrador:
-Email: benadmin@gmail.com.
-Contraseña: cubitachampagne123.
+![Vue.js](https://img.shields.io/badge/Vue.js-35495E?logo=vuedotjs&logoColor=4FC08D) ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## 🧩 Funcionalidades
 
-- **Vite.js**: entorno de desarrollo rápido y moderno
-- **Firebase**: base de datos en tiempo real y hosting
-- **Tailwind CSS**: estilos utilitarios y diseño responsivo
-- **JavaScript (ES6+)**: lógica de interacción y manipulación del DOM
+- **Autenticación:** registro, inicio y cierre de sesión con Firebase Authentication.
+- **Publicaciones:** crear, editar y ver posts, con una página de detalle para cada uno.
+- **Perfiles:** perfil propio editable y perfiles públicos de otros usuarios.
+- **Chat en tiempo real:** conversación pública que se actualiza al instante con Firestore.
+- **Rutas protegidas:** las secciones privadas requieren iniciar sesión (Vue Router).
+- **Diseño responsive** con Tailwind CSS.
+
+## 🛠️ Tecnologías
+
+| Área | Herramientas |
+|---|---|
+| Frontend | Vue 3, Vue Router, Tailwind CSS |
+| Backend como servicio | Firebase Authentication, Cloud Firestore, Storage |
+| Tooling | Vite, JavaScript (ES6+) |
+
+## 🗂️ Estructura
+
+```
+src/
+├── components/   Componentes reutilizables (botones, títulos, inputs)
+├── pages/        Pantallas: Home, Login, Register, Chat, posts y perfiles
+├── router/       Definición de rutas y protección de rutas privadas
+└── services/     Acceso a Firebase (auth, usuarios, posts, chat)
+```
+
+Las reglas de seguridad de Firestore y Storage están documentadas en `reglas-firestore.txt` y `reglas-storage.txt`.
+
+## ⚙️ Instalación
+
+```bash
+git clone https://github.com/Benja391/Red-Social.git
+cd Red-Social
+npm install
+npm run dev
+```
+
+Para usar tu propio backend, reemplazá la configuración de `src/services/firebase.js` por la de tu proyecto de Firebase.
+
+## 👤 Autor
+
+**Benjamín Bosch**, desarrollador Full Stack · [GitHub](https://github.com/Benja391) · [LinkedIn](https://www.linkedin.com/in/benjamin-bosch-/)
