@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-Para usar tu propio backend, reemplazá la configuración de `src/services/firebase.js` por la de tu proyecto de Firebase.
+La configuración de Firebase se lee de variables de entorno. Copiá `.env.example` como `.env` y completalo con los datos de tu proyecto de Firebase. Si lo publicás en Vercel o Netlify, cargá esas mismas variables en la configuración del sitio.
 
 ## 👤 Autor
 
