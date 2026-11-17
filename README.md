@@ -2,7 +2,7 @@
 
 Red social web con publicaciones, perfiles y un chat público en tiempo real, construida con **Vue 3** y **Firebase**.
 
-**🔗 Demo en vivo:** https://red-social-chat.netlify.app
+**🔗 Demo en vivo:** https://red-social-tan.vercel.app/
 
 ![Vue.js](https://img.shields.io/badge/Vue.js-35495E?logo=vuedotjs&logoColor=4FC08D) ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?logo=firebase&logoColor=black) ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)
 
@@ -46,7 +46,7 @@ npm install
 npm run dev
 ```
 
-La configuración de Firebase se lee de variables de entorno. Copiá `.env.example` como `.env` y completalo con los datos de tu proyecto de Firebase. Si lo publicás en Vercel o Netlify, cargá esas mismas variables en la configuración del sitio.
+La configuración de Firebase se lee de variables de entorno. Copiá `.env.example` como `.env` y completalo con los datos de tu proyecto de Firebase. Si lo publicás en Vercel, cargá esas mismas variables en la configuración del sitio.
 
 ## 👤 Autor
 
